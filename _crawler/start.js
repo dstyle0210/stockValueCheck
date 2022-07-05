@@ -5,14 +5,13 @@ var browser,page;
 
 const rim = require("./getRIM"); // RIM 데이터 추출
 
-(async ()=>{
+(async () => {
     browser = await chromium.launch({
         headless:false
     });
     page = await browser.newPage();
 
-    await rim.getRIM(page);
+    await rim(page);
 
     await browser.close();
 })();
-export {rim};

@@ -4,7 +4,7 @@ const codeList = fs.readFileSync("./codeList.txt"); // 가져올 종목코드
 * RIM 데이터 추출 : 구글 스프레드 시트
 */
 
-const getRIM = async (page:any) => {
+const getRIM = async (page) => {
     await page.goto("https://docs.google.com/spreadsheets/d/1vruON1NQIwR_8ibTbJeu_IYXxdowmKayWHHb8kufdcM/edit#gid=443321519");
 
     // 키보드 복사기능 사용
@@ -22,9 +22,8 @@ const getRIM = async (page:any) => {
 };
 
 
-const getData = (code:number) => {
+const getData = (code) => {
 
 }
 
 module.exports = getRIM;
-export {getRIM};
