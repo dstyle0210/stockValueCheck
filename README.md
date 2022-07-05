@@ -31,7 +31,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 Set-ExecutionPolicy RemoteSigned
 
 - npm 글로벌 설치
-npm i firebase firebase-tools gulp-cli -g
+npm i firebase firebase-tools gulp-cli typescript -g
 
 - git 사용자 정보 저장
 git config --global user.name "dstyle0210"
