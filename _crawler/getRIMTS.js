@@ -44,7 +44,7 @@ module.exports = async (page) => {
             await page.keyboard.press('ArrowUp');
             // 다시 종목적용
             await getData(stockCode);
-            return;
+            return null;
         }
         ;
         await page.keyboard.press('ArrowUp');
@@ -69,6 +69,8 @@ module.exports = async (page) => {
         return null;
     });
     // RIM 데이터 복사 실행
-    result.push(await getData("035420"));
+    let data = await getData("035420");
+    if (data)
+        result.push(data);
     console.log(result);
 };

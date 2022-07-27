@@ -12,7 +12,7 @@ type StockData = {
 module.exports = async (page:any) => {
     let result : StockData[] = [];
 
-    async function getData(stockCode:string) : Promise<StockData> {
+    async function getData(stockCode:string) : Promise<StockData | null> {
         const getResult = async (stockCode:string):Promise<string> => {
             await page.keyboard.type(`'${stockCode}`);
             await page.keyboard.press('Enter');
@@ -59,7 +59,7 @@ module.exports = async (page:any) => {
 
             // 다시 종목적용
             await getData(stockCode);
-            return;
+            return null;
         };
 
         await page.keyboard.press('ArrowUp');
@@ -90,7 +90,8 @@ module.exports = async (page:any) => {
     });
 
     // RIM 데이터 복사 실행
-    result.push(await getData("035420"));
-
+    let data : StockData | null = await getData("035420");
+    if( data ) result.push(data);
+    
     console.log(result);
 }
