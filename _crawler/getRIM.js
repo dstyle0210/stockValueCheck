@@ -3,6 +3,10 @@ const fs = require("fs");
 * RIM 데이터 추출 : 구글 스프레드 시트
 */
 const getRIM = async (page) => {
+    console.log("getRIM");
+};
+
+const getRIM2 = async (page) => {
 
     await page.goto("https://docs.google.com/spreadsheets/d/1vruON1NQIwR_8ibTbJeu_IYXxdowmKayWHHb8kufdcM/edit#gid=443321519");
 
