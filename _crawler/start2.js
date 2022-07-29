@@ -37,4 +37,5 @@ var result = [];
     }
     ;
     await browser.close();
+    process.exit();
 })();
