@@ -6,9 +6,10 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "c": "node ./_crawler/start"
+    "c": "node ./_crawler/start2"
   },
   "dependencies": {
+    "firebase": "^9.9.1",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.3.0",
     "gulp-typescript": "^6.0.0-alpha.1",

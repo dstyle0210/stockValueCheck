@@ -3,7 +3,7 @@
  * @typedef {code:string,cap:string,rim:string,equity:string,stocks:string,profit:string,dividend:string,psr:string} StockData
  */
 type StockData = {
-    code:string,
+    code:string, // 종목코드
     cap:string, // 적정 시가총액
     rim:string, // RIM
     equity:string, // 자본
