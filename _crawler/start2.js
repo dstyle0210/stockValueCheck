@@ -19,6 +19,7 @@ const db = (0, database_1.getDatabase)(app);
 /*! Playwright */
 const { chromium, devices } = require("playwright");
 const rim = require("./getRIMTS"); // RIM 데이터 추출
+const mdd = require("./getMDDTS"); // MDD 데이터 추출
 var browser, page;
 var result = [];
 (async () => {
@@ -29,11 +30,17 @@ var result = [];
     var codeList = fs.readFileSync("./_crawler/codeList.txt"); // 가져올 종목코드
     codeList = codeList.toString().split("\r\n");
     var rimResult = await rim(page, codeList);
-    // 임시 : 파일링 저장 처리 => 나중에 firebase 로 업데이트 필요
-    // await fs.writeFileSync("./src/data/rimData.json",JSON.stringify(rimResult),"utf8");
-    for (let stockData of rimResult) {
+    var mddResult = await mdd(page, codeList);
+    const resultData = [];
+    codeList.forEach((code) => {
+        const rData = rimResult.find(data => data.code == code);
+        const mData = mddResult.find(data => data.code == code);
+        resultData.push(Object.assign({}, rData, mData));
+    });
+    console.log(resultData);
+    for (let stockData of resultData) {
         await (0, database_1.set)((0, database_1.ref)(db, "stocks/" + stockData.code), stockData);
-        console.log(stockData.code + " 등록완료");
+        console.log(stockData.code + " RIM 등록완료");
     }
     ;
     await browser.close();

@@ -3,7 +3,7 @@ const fs = require("fs");
 
 /*! Firebase Setting */
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, onValue, set} from "firebase/database";
+import { getDatabase, ref, onValue, set, update} from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA-ecCqUPf-iFsUIHOIzwtgKxmhoos5cYk",
@@ -21,6 +21,7 @@ const db = getDatabase(app);
 /*! Playwright */
 const {chromium,devices} = require("playwright");
 const rim = require("./getRIMTS"); // RIM 데이터 추출
+const mdd = require("./getMDDTS"); // MDD 데이터 추출
 var browser:any,page:any;
 var result = [];
 
@@ -35,13 +36,20 @@ var result = [];
     codeList = codeList.toString().split("\r\n");
 
     var rimResult = await rim(page,codeList);
+    var mddResult = await mdd(page,codeList);
 
-    // 임시 : 파일링 저장 처리 => 나중에 firebase 로 업데이트 필요
-    // await fs.writeFileSync("./src/data/rimData.json",JSON.stringify(rimResult),"utf8");
+    const resultData:{code:string}[] = [];
+    codeList.forEach((code)=>{
+        const rData = rimResult.find( data => data.code == code );
+        const mData = mddResult.find( data => data.code == code );
+        resultData.push(Object.assign({},rData,mData));
+    });
 
-    for(let stockData of rimResult){
+    console.log(resultData);
+
+    for(let stockData of resultData){
         await set(ref(db,"stocks/"+stockData.code),stockData);
-        console.log(stockData.code+" 등록완료");
+        console.log(stockData.code+" RIM 등록완료");
     };
     
     await browser.close();
