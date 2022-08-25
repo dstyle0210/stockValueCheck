@@ -1,0 +1,15 @@
+@import "reset.scss";
+
+html,body{width:100%;height:100%;}
+main{background:#f5f5f5;}
+#app{width:100%;height:100%;display:flex;flex-direction: column;
+    > main{flex:1;}
+}
+
+/*! 헤더 */
+header{font-size:20px;padding:5px;font-weight:bold;background:#fff;border-bottom:1px solid #999;}
+
+
+
+/*! 헤더 */
+footer{font-size:14px;text-align:center;background:#fff;height:30px;line-height:30px;border-top:1px solid #999;}

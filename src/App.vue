@@ -2,21 +2,18 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorld from './components/HelloWorld.vue'
+import style from "./assets/css/reset.css"; // 추가
 </script>
 
 <template>
-  <header>헤더</header>
-  <router-view />
-  <header>풋터</header>
+  <header>DS.Stock</header>
+  <main>
+    <router-view />
+  </main>
+  <footer>Copyright Dstyle0210</footer>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+<style lang="scss">
+@import "./assets/scss/layout.scss";
 </style>
