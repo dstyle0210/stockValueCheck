@@ -4,6 +4,11 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes = [
   {
     path: "/",
+    name: "Index",
+    component: () => import("./page/stock.vue"),
+  },
+  {
+    path: "/home",
     name: "Home",
     component: () => import("./page/home.vue"),
   },

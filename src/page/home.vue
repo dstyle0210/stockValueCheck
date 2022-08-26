@@ -19,7 +19,7 @@ import { defineComponent } from "vue";
 // https://api.finance.naver.com/siseJson.naver?symbol=035420&requestType=1&startTime=20220825&endTime=20220825&timeframe=day
 
 
-
+console.log("home");
 export default defineComponent({
   name: "Home",
   data() {
